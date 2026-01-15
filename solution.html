@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solution | Thermowave Dynamics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+    <style>
+        body { box-sizing: border-box; }
+        :root { --charcoal: #1a1a1a; --crimson: #C41E3A; --forest: #228B22; }
+        .font-technical { font-family: 'Space Grotesk', monospace; }
+        .font-elegant { font-family: 'Source Serif 4', Georgia, serif; }
+        .blueprint-overlay {
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-scaleIn { animation: scaleIn 0.6s ease-out forwards; }
+        .stagger-1 { animation-delay: 0.1s; opacity: 0; }
+        .stagger-2 { animation-delay: 0.2s; opacity: 0; }
+        .stagger-3 { animation-delay: 0.3s; opacity: 0; }
+        .stagger-4 { animation-delay: 0.4s; opacity: 0; }
+    </style>
+</head>
+<body class="h-full bg-white font-elegant text-charcoal overflow-x-hidden">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#1a1a1a] backdrop-blur-md border-b border-white/10 shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="font-technical font-bold text-white text-xl tracking-tight hover:text-crimson transition-colors">THERMOWAVE DYNAMICS</a>
+            <div class="hidden md:flex items-center gap-8 font-technical text-sm">
+                <a href="solution.html" class="text-white border-b-2 border-crimson">Problem & Solution</a>
+                <a href="products.html" class="text-white/80 hover:text-white transition-colors">Products</a>
+                <a href="team.html" class="text-white/80 hover:text-white transition-colors">Team</a>
+                <a href="#contact" class="px-4 py-2 border border-white/20 rounded text-white hover:bg-white hover:text-black transition-all">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-32 pb-16 bg-[#1a1a1a] text-center blueprint-overlay">
+        <h1 class="font-technical text-4xl md:text-5xl font-bold text-white animate-fadeInUp">The Methodology</h1>
+        <p class="text-gray-400 mt-4 font-elegant max-w-2xl mx-auto animate-fadeInUp stagger-1">From a global crisis to a molecular opportunity.</p>
+    </div>
+
+    <section class="py-24 bg-[#1a1a1a] text-white border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <span class="font-technical text-crimson text-sm tracking-widest uppercase">The Crisis</span>
+                <h2 class="font-technical text-4xl font-bold mb-6 mt-2">The Plastic <span class="text-crimson">Dead End</span></h2>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8 font-elegant">
+                    We have produced 8.3 billion tons of plastic since the 1950s. Only 9% has been recycled. The rest sits in landfills, leaking toxins into the soil, or floats in our oceans.
+                </p>
+                <div class="grid grid-cols-2 gap-8 border-t border-gray-800 pt-8 mt-8">
+                    <div>
+                        <div class="text-4xl font-technical font-bold text-white">91%</div>
+                        <div class="text-sm text-gray-500 uppercase tracking-wider mt-1">Unrecycled Waste</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-technical font-bold text-crimson">450y</div>
+                        <div class="text-sm text-gray-500 uppercase tracking-wider mt-1">Decomposition Time</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gradient-to-br from-gray-900 to-gray-950 rounded-xl p-8 border border-gray-700 shadow-xl">
+                <h3 class="font-technical text-xl text-gray-200 mb-6">Current Lifecycle Failure</h3>
+                <div class="h-6 rounded-full overflow-hidden relative shadow-inner mb-2">
+                    <div class="h-full bg-gradient-to-r from-red-600 via-red-700 to-red-800 w-[91%] absolute left-0 top-0"></div>
+                    <div class="h-full bg-gradient-to-r from-green-500 to-emerald-400 w-[9%] absolute right-0 top-0"></div>
+                </div>
+                <div class="flex justify-between text-xs font-technical text-gray-400">
+                    <span>Landfill / Ocean</span>
+                    <span>Recycled</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="font-technical text-forest text-sm tracking-widest uppercase">The Technology</span>
+                <h2 class="font-technical text-4xl md:text-5xl font-bold text-charcoal mt-4">Microwave Pyrolysis</h2>
+                <p class="font-elegant text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
+                    We don't burn waste. We molecularly restructure it using oxygen-free heat.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition-all animate-scaleIn stagger-1">
+                    <div class="font-technical text-crimson font-bold text-5xl mb-4">01</div>
+                    <h4 class="font-technical text-xl font-bold mb-2">Collection</h4>
+                    <p class="text-gray-500 font-elegant">Aggregating plastic waste streams.</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition-all animate-scaleIn stagger-2">
+                    <div class="font-technical text-orange-500 font-bold text-5xl mb-4">02</div>
+                    <h4 class="font-technical text-xl font-bold mb-2">Microwave</h4>
+                    <p class="text-gray-500 font-elegant">Targeted thermal breakdown.</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition-all animate-scaleIn stagger-3">
+                    <div class="font-technical text-forest font-bold text-5xl mb-4">03</div>
+                    <h4 class="font-technical text-xl font-bold mb-2">Resources</h4>
+                    <p class="text-gray-500 font-elegant">Biochar, Oil, & Syngas output.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#1a1a1a] blueprint-overlay relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="font-technical text-4xl font-bold text-white mt-4">Global Impact Estimates</h2>
+            </div>
+            <div class="grid md:grid-cols-4 gap-6 text-center">
+                <div class="p-6 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-300">
+                    <div class="text-4xl font-technical font-bold text-white mb-2">30k</div>
+                    <div class="text-gray-400 text-sm">Tons Plastic Diverted</div>
+                </div>
+                <div class="p-6 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-300">
+                    <div class="text-4xl font-technical font-bold text-forest mb-2">8k</div>
+                    <div class="text-gray-400 text-sm">Tons Biochar Created</div>
+                </div>
+                <div class="p-6 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-300">
+                    <div class="text-4xl font-technical font-bold text-emerald-400 mb-2">24k</div>
+                    <div class="text-gray-400 text-sm">Tons CO₂ Sequestered</div>
+                </div>
+                <div class="p-6 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-300">
+                    <div class="text-4xl font-technical font-bold text-yellow-400 mb-2">2.5k</div>
+                    <div class="text-gray-400 text-sm">GWh Clean Energy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-[#1a1a1a] text-white border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+            <div>
+                <h2 class="font-technical text-3xl font-bold mb-6">Partner with us.</h2>
+                <p class="font-elegant text-gray-400 mb-8">Let's implement this solution in your city.</p>
+                <div class="space-y-4 font-technical">
+                    <div class="flex items-center gap-4 text-gray-300"><span class="text-crimson">E:</span> contact@thermowave.com</div>
+                    <div class="flex items-center gap-4 text-gray-300"><span class="text-forest">P:</span> +1 (555) 123-4567</div>
+                </div>
+            </div>
+            <form class="space-y-4">
+                <input type="email" placeholder="Your Email" class="w-full bg-white/5 border border-white/10 p-4 text-white focus:border-crimson outline-none">
+                <textarea rows="4" placeholder="Message" class="w-full bg-white/5 border border-white/10 p-4 text-white focus:border-crimson outline-none"></textarea>
+                <button class="bg-crimson text-white font-technical font-bold px-8 py-3 w-full hover:bg-red-700 transition-all">Send Inquiry</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
