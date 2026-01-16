@@ -14,14 +14,11 @@
             --crimson: #C41E3A;
             --forest: #228B22;
             --white: #ffffff;
-            --light-gray: #f8f9fa;
         }
         .font-technical { font-family: 'Space Grotesk', monospace; }
         .font-elegant { font-family: 'Source Serif 4', Georgia, serif; }
-        .bg-charcoal { background-color: var(--charcoal); }
-        .text-crimson { color: var(--crimson); }
-        .text-forest { color: var(--forest); }
         
+        /* BACKGROUND ARCHITECTURE */
         .blueprint-overlay {
             background-image: 
                 linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
@@ -35,229 +32,225 @@
                 radial-gradient(circle at 80% 50%, rgba(34,139,34,0.05) 0%, transparent 50%);
         }
         
-        @keyframes pulse-slow {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; }
-        }
-        .animate-pulse-slow { animation: pulse-slow 3s ease-in-out infinite; }
-        
+        /* ANIMATIONS */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
         }
-        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+        
+        .animate-fadeInUp { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .animate-fadeIn { animation: fadeIn 1s ease-out forwards; }
-        .animate-scaleIn { animation: scaleIn 0.6s ease-out forwards; }
-        .animate-slideInLeft { animation: slideInLeft 0.8s ease-out forwards; }
-        .animate-slideInRight { animation: slideInRight 0.8s ease-out forwards; }
-        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-float { animation: float 3.5s ease-in-out infinite; }
+        
         .stagger-1 { animation-delay: 0.1s; opacity: 0; }
         .stagger-2 { animation-delay: 0.2s; opacity: 0; }
         .stagger-3 { animation-delay: 0.3s; opacity: 0; }
-        .stagger-4 { animation-delay: 0.4s; opacity: 0; }
-        .stagger-5 { animation-delay: 0.5s; opacity: 0; }
-        .stagger-6 { animation-delay: 0.6s; opacity: 0; }
-        html { scroll-behavior: smooth; }
-        section { scroll-margin-top: 80px; }
-        .transition-all { transition: all 0.3s ease; }
+
+        /* Smooth UI Transitions */
+        .mobile-menu-transition {
+            transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .mobile-menu-transition.open {
+            max-height: 400px;
+            opacity: 1;
+        }
     </style>
 </head>
-<body class="h-full bg-white font-elegant text-charcoal overflow-x-hidden">
+<body class="h-full bg-white font-elegant text-[#1a1a1a] overflow-x-hidden">
 
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-charcoal backdrop-blur-md border-b border-white/10 shadow-lg">
+    <nav class="fixed top-0 left-0 right-0 z-[100] bg-[#1a1a1a]/95 backdrop-blur-lg border-b border-white/10">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <span class="font-technical font-bold text-white text-xl tracking-tight">THERMOWAVE DYNAMICS</span>
+            <div class="flex items-center">
+                <span class="font-technical font-bold text-white text-lg lg:text-xl tracking-tighter uppercase">Thermowave Dynamics</span>
             </div>
-            <div class="flex items-center gap-6 font-technical text-sm">
-                <a href="index.html" class="text-white transition-colors">Home</a>
-                <a href="technology.html" class="text-white/80 hover:text-white transition-colors">Technology</a>
-                <a href="products.html" class="text-white/80 hover:text-white transition-colors">Products</a>
-                <a href="team.html" class="text-white/80 hover:text-white transition-colors">Team</a>
+            
+            <div class="hidden md:flex items-center gap-8 font-technical text-sm">
+                <a href="index.html" class="text-white hover:text-[#228B22] transition-colors">Home</a>
+                <a href="technology.html" class="text-white/70 hover:text-white transition-colors">Technology</a>
+                <a href="products.html" class="text-white/70 hover:text-white transition-colors">Products</a>
+                <a href="team.html" class="text-white/70 hover:text-white transition-colors">Team</a>
+            </div>
+
+            <button id="menu-toggle" class="md:hidden text-white p-2 focus:outline-none" aria-label="Toggle Menu">
+                <svg id="menu-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden bg-[#1a1a1a] mobile-menu-transition border-t border-white/5">
+            <div class="flex flex-col p-6 space-y-5 font-technical text-base uppercase tracking-widest">
+                <a href="index.html" class="text-white">Home</a>
+                <a href="technology.html" class="text-white/60">Technology</a>
+                <a href="products.html" class="text-white/60">Products</a>
+                <a href="team.html" class="text-white/60">Team</a>
+                <a href="#contact" onclick="toggleMenu()" class="text-[#228B22] font-bold">Contact Us</a>
             </div>
         </div>
     </nav>
 
     <header class="min-h-screen flex flex-col lg:flex-row pt-16">
-        <div class="lg:w-1/2 h-[50vh] lg:h-auto bg-charcoal blueprint-overlay relative flex items-center justify-center p-8 lg:p-12 border-r border-white/5">
-            <div class="relative z-10 text-center lg:text-left">
-                <span class="font-technical text-crimson text-sm tracking-widest uppercase animate-fadeIn">Thermowave Dynamics</span>
-                <h1 class="font-technical text-5xl lg:text-7xl font-bold text-white mt-4 mb-6 leading-tight animate-fadeInUp stagger-1">
+        <div class="lg:w-1/2 min-h-[60vh] lg:h-auto bg-[#1a1a1a] blueprint-overlay relative flex items-center justify-center p-8 lg:p-16 border-b lg:border-b-0 lg:border-r border-white/5">
+            <div class="relative z-10 text-center lg:text-left w-full max-w-xl">
+                <span class="font-technical text-[#C41E3A] text-xs sm:text-sm tracking-[0.4em] uppercase animate-fadeIn">Future Engineering</span>
+                <h1 class="font-technical text-4xl sm:text-5xl lg:text-7xl font-bold text-white mt-6 mb-8 leading-[1.1] animate-fadeInUp stagger-1">
                     Forging the <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Circular Era.</span>
                 </h1>
-                <p class="font-elegant text-gray-400 text-lg max-w-md mx-auto lg:mx-0 animate-fadeInUp stagger-2">
+                <p class="font-elegant text-gray-400 text-base sm:text-lg lg:text-xl animate-fadeInUp stagger-2 mb-10 leading-relaxed">
                     Advanced microwave pyrolysis technology that transforms plastic waste into carbon-negative resources.
                 </p>
-                <div class="mt-8 flex gap-4 justify-center lg:justify-start animate-fadeInUp stagger-3">
-                    <a href="technology.html" class="bg-white text-charcoal font-technical font-bold px-8 py-3 hover:bg-gray-200 hover:scale-105 transition-all">View Tech</a>
-                    <a href="#contact" class="border-2 border-white text-white font-technical font-bold px-8 py-3 hover:bg-white hover:text-charcoal hover:scale-105 transition-all">Contact Us</a>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fadeInUp stagger-3">
+                    <a href="technology.html" class="bg-white text-[#1a1a1a] text-center font-technical font-bold px-10 py-4 hover:bg-gray-200 transition-all uppercase tracking-widest text-sm">View Tech</a>
+                    <a href="#contact" class="border-2 border-white text-white text-center font-technical font-bold px-10 py-4 hover:bg-white hover:text-[#1a1a1a] transition-all uppercase tracking-widest text-sm">Contact Us</a>
                 </div>
             </div>
         </div>
         
-        <div class="lg:w-1/2 h-[50vh] lg:h-auto bg-gradient-to-br from-green-50 to-emerald-100 nature-grid relative flex flex-col items-center justify-center p-8 lg:p-12">
-            <div class="text-center relative z-10 w-full max-w-2xl">
-                <div class="w-full aspect-square max-w-md mx-auto rounded-full border-4 border-forest/20 flex items-center justify-center bg-white shadow-xl animate-float overflow-hidden">
-                    <img src="https://i.imgur.com/cHOGqWS.png" alt="Thermowave Dynamics Logo" class="w-full h-full object-cover scale-75">
-                </div>
+        <div class="lg:w-1/2 min-h-[45vh] lg:h-auto bg-gradient-to-br from-green-50 to-emerald-100 nature-grid relative flex items-center justify-center p-12">
+            <div class="w-full max-w-[280px] sm:max-w-md aspect-square rounded-full border-8 border-white flex items-center justify-center bg-white shadow-2xl animate-float">
+                <img src="https://i.imgur.com/cHOGqWS.png" alt="Logo" class="w-4/5 h-auto object-contain scale-90">
             </div>
         </div>
     </header>
 
-    <section class="py-24 bg-white">
+    <section class="py-20 lg:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 animate-fadeInUp">
-                <span class="font-technical text-forest text-sm tracking-widest uppercase">Our Mission</span>
-                <h2 class="font-technical text-4xl md:text-5xl font-bold text-charcoal mt-4">Reimagining Waste</h2>
-                <p class="font-elegant text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
-                    We're building the infrastructure for a world where waste doesn't exist—only resources waiting to be reborn.
-                </p>
+            <div class="text-center mb-16 lg:mb-24 animate-fadeInUp">
+                <span class="font-technical text-[#228B22] text-sm tracking-widest uppercase">The Mission</span>
+                <h2 class="font-technical text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1a1a1a] mt-4">Reimagining Global Waste</h2>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl border border-red-200 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 animate-scaleIn stagger-1">
-                    <div class="w-16 h-16 bg-crimson/20 rounded-2xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-crimson" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                        </svg>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                <div class="group p-8 lg:p-10 bg-gray-50 rounded-[2rem] border border-gray-100 hover:bg-white hover:shadow-2xl transition-all duration-500">
+                    <div class="w-16 h-16 bg-[#C41E3A]/10 text-[#C41E3A] rounded-2xl flex items-center justify-center mb-8">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                     </div>
-                    <h3 class="font-technical text-2xl font-bold mb-3 text-charcoal">The Crisis</h3>
-                    <p class="text-gray-700 font-elegant">8.3 billion tons of plastic produced. Only 9% recycled. We're drowning in a material designed to last forever.</p>
+                    <h3 class="font-technical text-2xl font-bold mb-4">The Crisis</h3>
+                    <p class="text-gray-600 leading-relaxed font-elegant">8.3 billion tons of plastic produced. Only 9% recycled. We're drowning in a material designed to last forever.</p>
                 </div>
 
-                <div class="p-8 bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl border border-green-200 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 animate-scaleIn stagger-2">
-                    <div class="w-16 h-16 bg-forest/20 rounded-2xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
+                <div class="group p-8 lg:p-10 bg-gray-50 rounded-[2rem] border border-gray-100 hover:bg-white hover:shadow-2xl transition-all duration-500">
+                    <div class="w-16 h-16 bg-[#228B22]/10 text-[#228B22] rounded-2xl flex items-center justify-center mb-8">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
-                    <h3 class="font-technical text-2xl font-bold mb-3 text-charcoal">The Solution</h3>
-                    <p class="text-gray-700 font-elegant">Microwave pyrolysis technology that breaks down plastics at the molecular level—no burning, no emissions.</p>
+                    <h3 class="font-technical text-2xl font-bold mb-4">The Solution</h3>
+                    <p class="text-gray-600 leading-relaxed font-elegant">Microwave pyrolysis technology that breaks down plastics at the molecular level—no burning, no emissions.</p>
                 </div>
 
-                <div class="p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-200 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 animate-scaleIn stagger-3">
-                    <div class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
-                        </svg>
+                <div class="group p-8 lg:p-10 bg-gray-50 rounded-[2rem] border border-gray-100 hover:bg-white hover:shadow-2xl transition-all duration-500">
+                    <div class="w-16 h-16 bg-blue-500/10 text-blue-600 rounded-2xl flex items-center justify-center mb-8">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
                     </div>
-                    <h3 class="font-technical text-2xl font-bold mb-3 text-charcoal">The Impact</h3>
-                    <p class="text-gray-700 font-elegant">Every ton processed diverts waste from landfills and oceans while creating valuable biochar and clean energy.</p>
+                    <h3 class="font-technical text-2xl font-bold mb-4">The Impact</h3>
+                    <p class="text-gray-600 leading-relaxed font-elegant">Every ton processed diverts waste from landfills while creating valuable biochar and clean energy.</p>
                 </div>
-            </div>
-
-            <div class="text-center mt-16 animate-fadeInUp stagger-4">
-                <a href="products.html" class="inline-block bg-charcoal text-white font-technical font-bold px-10 py-4 hover:bg-gray-800 hover:scale-105 transition-all">
-                    Explore Our Products
-                </a>
             </div>
         </div>
     </section>
 
-   <section id="contact" class="py-24 bg-charcoal text-white">
+    <section id="contact" class="py-24 bg-[#1a1a1a] text-white overflow-hidden">
         <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-12 animate-fadeInUp">
-                <span class="font-technical text-forest text-sm tracking-widest uppercase">Get In Touch</span>
-                <h2 class="font-technical text-4xl font-bold mt-4">Contact Us</h2>
-                <p class="font-elegant text-gray-400 mt-4">Ready to join the circular revolution? Let's talk.</p>
+            <div class="text-center mb-16">
+                <span class="font-technical text-[#228B22] text-xs tracking-widest uppercase">Inquiries</span>
+                <h2 class="font-technical text-4xl font-bold mt-4">Contact Our Team</h2>
             </div>
-<form id="contact-form" class="space-y-6 animate-fadeInUp stagger-1">
-    <div class="grid md:grid-cols-2 gap-6">
-        <div>
-            <label class="block font-technical text-sm mb-2">Name</label>
-            <input type="text" name="name" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white" placeholder="Your name">
-        </div>
-        <div>
-            <label class="block font-technical text-sm mb-2">Email</label>
-            <input type="email" name="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white" placeholder="your@email.com">
-        </div>
-    </div>
-    <div>
-        <label class="block font-technical text-sm mb-2">Subject</label>
-        <input type="text" name="subject" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white" placeholder="What's this about?">
-    </div>
-    <div>
-        <label class="block font-technical text-sm mb-2">Message</label>
-        <textarea name="message" rows="5" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white resize-none" placeholder="Tell us more..."></textarea>
-    </div>
-    
-    <div id="form-status" class="font-technical text-sm mt-4"></div>
 
-    <div class="text-center">
-        <button type="submit" id="submit-btn" class="bg-forest text-white font-technical font-bold px-12 py-4 hover:bg-green-700 transition-all">
-            Send Message
-        </button>
-    </div>
-</form>
+            <form id="contact-form" class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="font-technical text-xs uppercase text-gray-500">Full Name</label>
+                        <input type="text" name="name" required class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white focus:border-[#228B22] outline-none transition-all" placeholder="Enter name">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="font-technical text-xs uppercase text-gray-500">Email</label>
+                        <input type="email" name="email" required class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white focus:border-[#228B22] outline-none transition-all" placeholder="email@address.com">
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="font-technical text-xs uppercase text-gray-500">Subject</label>
+                    <input type="text" name="subject" required class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white focus:border-[#228B22] outline-none transition-all" placeholder="Project Inquiry">
+                </div>
+                <div class="space-y-2">
+                    <label class="font-technical text-xs uppercase text-gray-500">Message</label>
+                    <textarea name="message" rows="5" required class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white focus:border-[#228B22] outline-none resize-none transition-all" placeholder="Your message..."></textarea>
+                </div>
+                
+                <div id="form-status" class="font-technical text-sm text-center"></div>
+
+                <div class="text-center pt-4">
+                    <button type="submit" id="submit-btn" class="w-full sm:w-auto bg-[#228B22] text-white font-technical font-bold px-16 py-5 rounded-lg hover:bg-green-700 hover:scale-105 active:scale-95 transition-all uppercase tracking-widest">
+                        Transmit Message
+                    </button>
+                </div>
+            </form>
         </div>
     </section>
 
-    <footer class="bg-charcoal border-t border-white/10 text-gray-400 py-12 text-center font-technical text-sm">
-        <p>© 2026 Thermowave Dynamics. Engineering a Circular Future.</p>
+    <footer class="bg-[#1a1a1a] border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-gray-500 font-technical text-[10px] sm:text-xs uppercase tracking-[0.4em]">
+                © 2026 Thermowave Dynamics. Engineering a Circular Future.
+            </p>
+        </div>
     </footer>
-<script>
-    const contactForm = document.getElementById('contact-form');
-    const statusDiv = document.getElementById('form-status');
-    const submitBtn = document.getElementById('submit-btn');
 
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Stop page from refreshing
-        
-        // Change button state
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'Sending...';
-        statusDiv.innerText = '';
+    <script>
+        // MOBILE MENU STATE
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
 
-        const formData = new FormData(contactForm);
-
-        try {
-            const response = await fetch('https://thermowavedynamics.pythonanywhere.com/api/contact', {
-                method: 'POST',
-                body: formData
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                statusDiv.style.color = '#228B22'; // Forest Green
-                statusDiv.innerText = '✓ Success! Your message has been sent.';
-                contactForm.reset(); // Clear the form
+        function toggleMenu() {
+            const isOpen = mobileMenu.classList.toggle('open');
+            if (isOpen) {
+                menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
             } else {
-                statusDiv.style.color = '#C41E3A'; // Crimson
-                statusDiv.innerText = '❌ Error: ' + result.message;
+                menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>';
             }
-        } catch (error) {
-            statusDiv.style.color = '#C41E3A';
-            statusDiv.innerText = '❌ Failed to connect to server. Please try again later.';
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'Send Message';
         }
-    });
-</script>
+
+        menuToggle.addEventListener('click', toggleMenu);
+
+        // FORM LOGIC
+        const contactForm = document.getElementById('contact-form');
+        const statusDiv = document.getElementById('form-status');
+        const submitBtn = document.getElementById('submit-btn');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Transmitting...';
+            
+            const formData = new FormData(contactForm);
+            try {
+                const response = await fetch('https://thermowavedynamics.pythonanywhere.com/api/contact', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                if (result.success) {
+                    statusDiv.className = 'font-technical text-[#228B22] mt-4';
+                    statusDiv.innerText = '✓ Transmission Successful.';
+                    contactForm.reset();
+                } else {
+                    statusDiv.className = 'font-technical text-[#C41E3A] mt-4';
+                    statusDiv.innerText = '❌ Error: ' + result.message;
+                }
+            } catch (error) {
+                statusDiv.className = 'font-technical text-[#C41E3A] mt-4';
+                statusDiv.innerText = '❌ Failed to connect to server.';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Transmit Message';
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-
-
