@@ -226,7 +226,7 @@
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             submitBtn.disabled = true;
-            submitBtn.innerText = 'Transmitting...';
+            submitBtn.innerText = 'Sending...';
             
             const formData = new FormData(contactForm);
             try {
@@ -237,7 +237,7 @@
                 const result = await response.json();
                 if (result.success) {
                     statusDiv.className = 'font-technical text-[#228B22] mt-4';
-                    statusDiv.innerText = '✓ Transmission Successful.';
+                    statusDiv.innerText = '✓ Message Sent.';
                     contactForm.reset();
                 } else {
                     statusDiv.className = 'font-technical text-[#C41E3A] mt-4';
@@ -248,9 +248,10 @@
                 statusDiv.innerText = '❌ Failed to connect to server.';
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerText = 'Transmit Message';
+                submitBtn.innerText = 'Send Query';
             }
         });
     </script>
 </body>
 </html>
+
