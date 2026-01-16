@@ -152,7 +152,7 @@
                 </div>
 
                 <div class="animate-fadeInUp stagger-1">
-                    <div class="bg-[#1a1a1a] text-white rounded-3xl overflow-hidden shadow-2xl border-2 border-[#C41E3A]/20 transition-all duration-500 hover:border-[#C41E3A]/60 relative">
+                    <div class="bg-[#1a1a1a] text-white rounded-3xl overflow-hidden shadow-2xl border-2 border-[#C41E3A]/20 transition-all duration-500 hover:border-[#C41E3A]/60">
                         <div class="absolute top-0 right-0 p-4 bg-[#C41E3A] text-white text-[10px] font-technical uppercase tracking-widest z-10 rounded-bl-xl">Industrial Series</div>
                         <div class="p-8 sm:p-12">
                             <div class="mb-6 font-technical text-5xl sm:text-7xl font-bold bg-gradient-to-r from-red-600 to-crimson bg-clip-text text-transparent">
@@ -211,7 +211,7 @@
 
                 <div class="text-center pt-6">
                     <button type="submit" id="submit-btn" class="w-full sm:w-auto bg-[#228B22] text-white font-technical font-bold px-16 py-5 rounded-xl hover:bg-green-700 hover:scale-[1.02] active:scale-95 transition-all shadow-xl uppercase tracking-widest text-xs">
-                        Transmit Inquiry
+                        Send Message
                     </button>
                 </div>
             </form>
@@ -225,6 +225,7 @@
     </footer>
 
     <script>
+        // MOBILE MENU LOGIC
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -239,6 +240,7 @@
         }
         menuToggle.addEventListener('click', toggleMenu);
 
+        // FORM LOGIC
         const contactForm = document.getElementById('contact-form');
         const feedbackDiv = document.getElementById('form-feedback');
         const submitBtn = document.getElementById('submit-btn');
@@ -246,7 +248,7 @@
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             submitBtn.disabled = true;
-            submitBtn.innerText = 'TRANSMITTING...';
+            submitBtn.innerText = 'SENDING...';
             
             const formData = new FormData(contactForm);
             try {
@@ -268,7 +270,7 @@
                 feedbackDiv.innerText = '❌ CONNECTION FAILED';
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerText = 'TRANSMIT INQUIRY';
+                submitBtn.innerText = 'SEND MESSAGE';
             }
         });
     </script>
