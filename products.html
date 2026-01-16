@@ -211,7 +211,7 @@
 
                 <div class="text-center pt-6">
                     <button type="submit" id="submit-btn" class="w-full sm:w-auto bg-[#228B22] text-white font-technical font-bold px-16 py-5 rounded-xl hover:bg-green-700 hover:scale-[1.02] active:scale-95 transition-all shadow-xl uppercase tracking-widest text-xs">
-                        Transmit Inquiry
+                        Send Message
                     </button>
                 </div>
             </form>
@@ -248,7 +248,7 @@
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             submitBtn.disabled = true;
-            submitBtn.innerText = 'TRANSMITTING...';
+            submitBtn.innerText = 'SENDING...';
             
             const formData = new FormData(contactForm);
             try {
@@ -270,7 +270,7 @@
                 feedbackDiv.innerText = '❌ CONNECTION FAILED';
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerText = 'TRANSMIT INQUIRY';
+                submitBtn.innerText = 'SEND MESSAGE';
             }
         });
     </script>
